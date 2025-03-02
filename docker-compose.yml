@@ -1,0 +1,75 @@
+services:
+  loclog:
+    container_name: loclog
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: production
+    ports:
+      - 3000:80
+    environment:
+      - DB_HOST=loclog-db
+      - DB_PORT=5432
+      - DB_USER=root
+      - DB_PASS=pass
+      - DB_NAME=loclog
+      - HTTP_PORT=80
+    depends_on:
+      - loclog-db
+    networks:
+      loclog-net:
+    volumes:
+      - .:/loclog
+      - ./node_modules:/loclog/node_modules
+    stdin_open: true
+    tty: true
+  loclog-db:
+    image: postgis/postgis:17-master
+    container_name: loclog-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: loclog
+    ports:
+      - 5432:5432
+    networks:
+      loclog-net:
+    volumes:
+      - loclog-db-data:/var/lib/postgresql
+    stdin_open: true
+    tty: true
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_CONFIG_SERVER_MODE=False
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      loclog-net:
+    depends_on:
+      - loclog-db
+  k6:
+    image: grafana/k6:latest
+    container_name: k6
+    networks:
+      loclog-net:
+    volumes:
+      - ./k6-tests:/scripts
+    command: run /scripts/loadTest.js
+    depends_on:
+      - loclog
+
+networks:
+  loclog-net:
+    driver: bridge
+
+volumes:
+  loclog-db-data:
+  pgadmin-data:
