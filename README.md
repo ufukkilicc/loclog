@@ -56,6 +56,9 @@ $ make docker-start
 
 ## 3. Load Testing
 The test is being done with **Grafana/k6**
+
+By default load test is on the endpoint /logs but you can change it from loadTest.js in the project
+
 This command runs a simple load test script:
 ```Makefile
 $ make docker-test

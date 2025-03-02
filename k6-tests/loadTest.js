@@ -43,20 +43,20 @@ export default function () {
     // http.post(url + "/areas", payload, params);
 
     // POST /locations
-    payload = JSON.stringify({
-        userId: 5,
-        point: {
-            coordinates: [
-                -73.9749,
-                40.7812
-            ]
-        }
-    });
-    http.post(url + "/locations", payload, params);
+    // payload = JSON.stringify({
+    //     userId: 5,
+    //     point: {
+    //         coordinates: [
+    //             -73.9749,
+    //             40.7812
+    //         ]
+    //     }
+    // });
+    // http.post(url + "/locations", payload, params);
 
     // // GET /areas
     // http.get(url + "/areas?page=1&limit=10")
 
     // GET /logs
-    // http.get(url + "/logs?page=1&limit=10")
+    http.get(url + "/logs?page=1&limit=10")
 }
