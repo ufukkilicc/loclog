@@ -17,4 +17,4 @@ docker-logs:
 docker-test:
 	docker compose -f docker-compose.yml up k6
 docker-run:
-	docker compose -f docker-compose.yml up loclog
+	docker compose -f docker-compose.yml up -d loclog
