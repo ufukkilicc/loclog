@@ -1,3 +1,4 @@
+# Development
 docker-build:
 	docker compose -f docker-compose.yml build $(filter-out $@,$(MAKECMDGOALS))
 docker-start:
@@ -12,5 +13,8 @@ docker-remove:
 	docker compose -f docker-compose.yml rm $(filter-out $@,$(MAKECMDGOALS))
 docker-logs:
 	docker compose logs --tail=0 --follow -f $(filter-out $@,$(MAKECMDGOALS))
+# APP Showcase
 docker-test:
 	docker compose -f docker-compose.yml up k6
+docker-run:
+	docker compose -f docker-compose.yml up loclog
