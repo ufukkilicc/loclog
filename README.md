@@ -23,15 +23,12 @@ The Location Logger Application is designed to track and manage user locations w
   - The system checks if the location falls within any predefined geofenced area using PostGIS's spatial functions (e.g., ST_Contains).
   - If the location is within an area, it is logged in the database with the corresponding areaId.
 2. **Geofenced Areas:**
-  - Administrators can create geofenced areas using the POST /areas endpoint.
   - Each area is defined by a polygon (a set of coordinates forming a closed shape).
   - These areas are stored in the database and used to determine if a user’s location falls within them.
 3. **Retrieving Logs:**
   - The GET /logs endpoint retrieves a paginated list of logged locations.
-  - This endpoint supports filtering by userId, areaId, and entryTime.
 4. **Retrieving Areas:**
   - The GET /areas endpoint retrieves a paginated list of geofenced areas.
-  - This endpoint supports filtering by name and sorting by createdAt.
 5. **Performance Optimization:**
   - The system is optimized for high performance and scalability, ensuring it can handle a large number of concurrent requests efficiently.
 ### Performance Optimization
@@ -39,7 +36,6 @@ The Location Logger Application is designed to track and manage user locations w
 The following optimizations have been implemented:
 - **NestJS Modular Decomposition:** The application is structured into modules (e.g., LocationsModule, AreasModule) for better maintainability and scalability.
 - **Caching:** NestJS’s built-in caching mechanism is used to reduce database load and improve response times.
-- **Event Loop Optimization:** The application is designed to avoid blocking the Node.js event loop, ensuring high concurrency.
 #### On the Database Level
 The following optimizations have been implemented:
 - **Indexing:** Indexes have been added to frequently queried columns (e.g., userId, areaId, entryTime) to speed up database queries.
