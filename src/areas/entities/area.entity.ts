@@ -1,14 +1,14 @@
 import { Location } from "src/locations/entities/location.entity";
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, Index, OneToMany } from "typeorm";
 import { AbstractEntity } from "../../database/abstract.entity";
 
 @Entity({ name: "areas" })
 export class Area extends AbstractEntity<Area> {
-    // @Index()
+    @Index()
     @Column("varchar")
     name: string;
 
-    // @Index({ spatial: true })
+    @Index({ spatial: true })
     @Column("geometry", { spatialFeatureType: "Polygon", srid: 4326 })
     polygon: any;
 

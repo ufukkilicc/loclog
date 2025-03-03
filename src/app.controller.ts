@@ -1,11 +1,12 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
+import { Body, Controller, Get, Post, Query, UseInterceptors } from '@nestjs/common';
 import { AreasService } from './areas/areas.service';
 import { CreateAreaDto } from './areas/dto/createArea.dto';
 import { PaginationQueryDto } from './dtos/paginationQuery.dto';
 import { CreateLocationDto } from './locations/dto/createLocation.dto';
 import { LocationsService } from './locations/locations.service';
 
-// @UseInterceptors(CacheInterceptor)
+@UseInterceptors(CacheInterceptor)
 @Controller()
 export class AppController {
   constructor(private readonly locationsService: LocationsService,

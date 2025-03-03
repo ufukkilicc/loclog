@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Geometry, Point, Polygon, Repository } from 'typeorm';
+import { Geometry, Point, Repository } from 'typeorm';
 import { CreateAreaDto } from './dto/createArea.dto';
 import { Area } from './entities/area.entity';
 

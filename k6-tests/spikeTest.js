@@ -42,7 +42,7 @@ export default function () {
     // });
     // http.post(url + "/areas", payload, params);
 
-    // // POST /locations
+    // POST /locations
     // payload = JSON.stringify({
     //     userId: 5,
     //     point: {
