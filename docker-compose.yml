@@ -25,7 +25,7 @@ services:
     stdin_open: true
     tty: true
   loclog-db:
-    image: postgis/postgis:17-master
+    image: postgis/postgis:latest
     container_name: loclog-db
     restart: always
     environment:
