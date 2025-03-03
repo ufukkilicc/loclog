@@ -51,7 +51,7 @@ The setup is built with **Docker**
 To install and start the application, run:
 ```javascript
 $ npm install
-$ make docker-start
+$ make docker-run
 ```
 
 ## 3. Load Testing
